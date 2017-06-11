@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class='container'>
+        <!--  v-if -->
+        <div v-if="gender == 'male' || gender == 'female'">
+            <h1>Hello,
+            <span v-if="gender == 'male'">Mr.{{name}}</span>
+            <span v-if="gender == 'female'">Mrs.{{name}}</span>
+            </h1>
+        </div>
+        <!-- v-else -->
+        <h1 v-else>So you can't decide. Fine!</h1>
+        <!-- show inputs -->
+        <label for="gender">Enter your gender:</label>
+        <input v-model="gender" class="form-control" id="gender">
+        <br/>
+        <label for="name">Enter your name:</label>
+        <input v-model="name" class="form-control" id="name">
+        <br/>
+        <pre>{{$data}}</pre>
+    </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    var app = new Vue ({
+      el : '.container',
+      data : {
+        gender : 'female',
+        name : 'Universe'
+      }
+    })
+  </script>
+</html>
