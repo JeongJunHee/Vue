@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class='container'>
+        <h1>The multiplication table of 4.</h1>
+        <ul class='list-group'>
+            <!-- i의 첫 값은 1 -->
+            <li v-for='i in 11' class='list-group-item'>
+                {{ i-1 }} times 4 equals {{ (i-1) * 4 }}
+            </li>
+        </ul>
+    </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue ({
+          el : '.container'
+      })
+  </script>
+</html>
