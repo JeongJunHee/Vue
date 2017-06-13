@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <h1>People of Vue</h1>
+          <ul class="list-group">
+              <li v-for="value in candidates" class="list-group-item">
+                  {{ value.name }} {{ value.vote }}
+                  <!-- vote++ -->
+                  <button v-on:click="value.vote++" class="btn btn-primary">Vote</button>
+              </li>
+          </ul>
+          <!-- keyboard event -->
+          <input @keyup.delete="clear" class="form-control" placeholder="press 'delete' to reset">
+          <!-- display the name of 'mayor' using a computed property  -->
+          <h2>Our mayor is {{ mayor.name }}</h2>
+          <pre>{{ $data }}</pre>
+          <pre>{{ mayor }}</pre>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue ({
+          el : '.container',
+          data : {
+              candidates : [
+                  { name : 'Mr.Black', vote : 0 },
+                  { name : 'Mr.Pink', vote : 0 },
+                  { name : 'Mr.Write', vote : 0 },
+                  { name : 'Mr.Brown', vote : 0 }
+              ]
+          },
+          computed : {
+              mayor : function() {
+                //first we sort array descending
+                var candidatesSorted = this.candidates.sort(function (a, b) {
+                    return b.vote - a.vote;
+                });
+                //the mayor will be the first item
+                return candidatesSorted[0];
+              }
+          },
+          methods : {
+              //this method runs when the key 'delete' is pressed
+              clear : function() {
+                  //Turn votes of all candidate to 0 using map() function
+                  this.candidates = this.candidates.map(function (candidate) {
+                      candidate.vote = 0;
+                      return candidate;
+                  })
+              }
+          }
+      });
+  </script>
+</html>
