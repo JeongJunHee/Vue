@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <h1>Type 2 numbers and choose operation</h1>
+          <form class="form-inline">
+            <!-- 입력을 숫자로 파싱하기 위해 특수 수식어 'number' 사용 -->
+            <input v-model.number="a" class="form-control">
+            <!-- enter key 누를 때 calculate 메소드 실행하려면 @keyup.enter 사용 -->
+            <!-- <input v-model.number="a" @keyup.enter class="form-control"> -->
+            <select v-model="operator" class="form-control">
+                <option>+</option>
+                <option>-</option>
+                <option>*</option>
+                <option>/</option>
+            </select>
+            <!-- 입력을 숫자로 파싱하기 위해 특수 수식어 'number' 사용 -->
+            <input v-model.number="b" class="form-control">
+            <!-- 폼 내용을 제출하면 페이지가 다시 로드됨 -->
+            <!-- 이를 막기 위해 메소드 내에서 event.preventDefault()을 사용하거나 v-on에 이벤트 수식어 사용-->
+            <button type="submit" v-on:click.prevent="calculate" class="btn btn-primary">
+                Calculate
+            </button>
+          </form>
+          <h2>Result : {{ a }} {{ operator }} {{ b }} = {{ c }}</h2>
+          <pre>{{ $data }}</pre>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue ({
+          el : '.container',
+          data : {
+              a : 1,
+              b : 2,
+              c : null,
+              operator : '+'
+          },
+          methods : {
+              calculate : function() {
+                  //event.preventDefault();
+                  switch(this.operator) {
+                    case '+':
+                        this.c = this.a + this.b;
+                        break;
+                    case '-':
+                        this.c = this.a - this.b;
+                        break;
+                    case '*':
+                        this.c = this.a * this.b;
+                        break;
+                    case '/':
+                        this.c = this.a / this.b;
+                        break;
+                  }
+              }
+          }
+      })
+  </script>
+</html>
