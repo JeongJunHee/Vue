@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <h1>Enter 2 numbers to calculate their sum.</h1>
+          <form class="form-inline">
+              <input v-model.number="a" class="form-control">
+              <select v-model="operator" class="form-control">
+                  <option>+</option>
+                  <option>-</option>
+                  <option>*</option>
+                  <option>/</option>
+              </select>
+              <input v-model.number="b" class="form-control">
+          </form>
+          <h2>Result : {{ a }} {{ operator }} {{ b }} = {{ c }}</h2>
+          <pre>{{ $data }}</pre>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue ({
+          el : '.container',
+          data : {
+              a : 1,
+              b : 2,
+              operator : '+',
+          },
+          computed : {
+              //계산된 getter
+              c : function() {
+                  switch (this.operator) {
+                    case "+" :
+                        return this.a + this.b;
+                        break;
+                    case "-" :
+                        return this.a - this.b;
+                        break;
+                    case "*" :
+                        return this.a * this.b;
+                        break;
+                    case "/" :
+                        return this.a / this.b;
+                        break;
+                  }
+              }
+          }
+      });
+  </script>
+</html>
