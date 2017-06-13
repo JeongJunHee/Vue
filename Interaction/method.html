@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .container {
+            padding-top : 75px;
+        }
+    </style>
+  </head>
+  <body>
+      <div class="container">
+          <button class="btn btn-primary btn-lg btn-block" v-on:click="upvote">
+              Upvote! {{ upvotes }}
+          </button>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue ({
+          el : '.container',
+          data : {
+              upvotes : 0
+          },
+          // methods 객체 아래에 메소드를 정의
+          methods : {
+              upvote : function() {
+                  // this는 메소드 안에서 Vue 인스턴스를 가리킴
+                  this.upvotes++;
+              }
+          }
+      })
+  </script>
+</html>
