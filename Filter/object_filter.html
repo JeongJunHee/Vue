@@ -11,13 +11,13 @@
           <h1>Let's hear some stories!</h1>
           <div>
               <h3>Alex's stories</h3>
-              <ul class="listgroup">
+              <ul class="list-group">
                   <li class="list-group-item" v-for="story in storiesBy('Alex')">
                       {{ story.writer }} said "{{ story.plot }}"
                   </li>
               </ul>
               <h3>John's stories</h3>
-              <ul class="listgroup">
+              <ul class="list-group">
                   <li class="list-group-item" v-for="story in storiesBy('John')">
                       {{ story.writer }} said "{{ story.plot }}"
                   </li>
