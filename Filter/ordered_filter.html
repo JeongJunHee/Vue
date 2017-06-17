@@ -12,7 +12,7 @@
           <ul class="list-group">
               <!-- <li v-for="story in orderedStories" class="list-group-item"> -->
               <li v-for="story in _.orderBy(stories, ['upvotes'], [order])" class="list-group-item">
-                  {{ story.writer }} said "{{ story.plot }}" and upvoted {{ story.upvaotes }} times.
+                  {{ story.writer }} said "{{ story.plot }}" and upvoted {{ story.upvotes }} times.
               </li>
           </ul>
           <!-- <button class="btn btn-primary" @click="order = order * -1">Reverse Order</button> -->
