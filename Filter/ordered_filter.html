@@ -10,14 +10,19 @@
       <div class="container">
           <h1>Let's hear some stories!</h1>
           <ul class="list-group">
-              <li v-for="story in orderedStories" class="list-group-item">
-                  {{ story.writer }} sacid "{{ story.plot }}" and upvoted {{ story.upvaotes }} times.
+              <!-- <li v-for="story in orderedStories" class="list-group-item"> -->
+              <li v-for="story in _.orderBy(stories, ['upvotes'], [order])" class="list-group-item">
+                  {{ story.writer }} said "{{ story.plot }}" and upvoted {{ story.upvaotes }} times.
               </li>
           </ul>
-          <button class="btn btn-primary" @click="order = order * -1">Reverse Order</button>
+          <!-- <button class="btn btn-primary" @click="order = order * -1">Reverse Order</button> -->
+          <button class="btn btn-default" v-on:click="reverseOrder">Reverse Order</button>
+          <br/><br/>
           <pre>{{ $data }}</pre>
       </div>
   </body>
+  <!-- lodash CDN -->
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
   <script src="https://unpkg.com/vue"></script>
   <script>
       new Vue({
@@ -45,15 +50,28 @@
                     upvotes : 74
                 },
             ],
-            order : -1,
+            //order : -1
+            order : 'desc',
+          },
+          methods : {
+            reverseOrder : function() {
+                this.order = (this.order === 'desc') ? 'asc' : 'desc';
+            }
           },
           computed : {
+              //order by lodash
+              orderedStories : function() {
+                  var order = this.order;
+                  return _.orderBy(this.stories, 'upvotes', [order])
+              }
+              /*
               orderedStories : function() {
                   var order = this.order
                   return this.stories.sort(function(a, b) {
                       return (a.upvotes - b.upvotes) * order;
                   })
               }
+              */
           }
       })
   </script>
