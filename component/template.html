@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <story></story>
+      </div>
+  </body>
+  <template id="story-template">
+      <h1>My horse is amzing!</h1>
+  </template>
+  <script src="https://unpkg.com/vue"></script>  
+  <script>
+      Vue.component('story', {
+          template : '#story-template'
+      });
+      new Vue ({
+          el : '.container',
+      })
+  </script>
+</html>
