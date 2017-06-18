@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <h1>People of Gaul</h1>
+          <ul class="list-group">
+              <li v-for="p in orderedpeople()" class="list-group-item">
+                  {{ p.name }} {{ p.age }}
+              </li>
+          </ul>
+          <h1>"Old" People of Gaul</h1>
+          <ul class="list-group">
+              <li v-for="p in old" class="list-group-item">
+                  {{ p.name }} {{ p.age }}
+              </li>
+          </ul>
+          <pre> {{ $data }}</pre>
+      </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/lodash/4.17.4/lodash.min.js"></script>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+    new Vue({
+        el : '.container',
+        data : {
+            people : [
+                { name : 'Obelix', age : 31 },
+                { name : 'Asterix', age : 32 },
+                { name : 'Julius Caesar', age : 56 },
+                { name : 'Majestix', age : 62 },
+            ]
+        },
+        methods : {
+            orderedpeople : function() {
+                return _.orderBy(this.people, 'age')
+            }
+        },
+        computed : {
+            old : function() {{
+               return this.people.filter(function (p) {
+                   return p.age >= 50;
+               })
+            }}
+        }
+    })
+  </script>
+</html>
