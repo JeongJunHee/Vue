@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container">
+          <h1>Where would like to go?</h1>
+          <ul class="list-group">
+              <planet v-for="p in planet" :planet='p'></planet>
+          </ul>
+          <pre>{{ $data }}</pre>
+      </div>
+      <template id="planet-template">
+          <li class="list-group-item">
+              Planet : {{ planet.name }} Visited {{ planet.visited }} time(s).
+              <button v-show="canBeVisited" @click="visit" class="btn btn-default">visit</button>
+              <span v-if="planet.visited > 0" class="fa fa-rocket fa-2x pull-right" aria-hidden="true"></span>
+          </li>
+      </template>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      
+    Vue.component('planet', {
+        template : '#planet-template',
+        props : ['planet'],
+        methods : {
+            visit : function() {
+                this.planet.visited++;
+            },
+        },
+        computed : {
+            canBeVisited : function() {
+                return this.planet.visited < 3
+            }
+        }
+    });
+
+      new Vue({
+          el : '.container',
+          data : {
+              planet : [
+                { name : 'Mercury', visited : 0 },
+                { name : 'Venus', visited : 0 },
+                { name : 'Mars', visited : 0 },
+                { name : 'Jupiter', visited : 0 },
+            ],
+          }
+      })
+  </script>
+</html>
