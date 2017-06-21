@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container text-center">
+        <p style="font-size : 140px">{{ votes }}</P>
+        <button class="btn btn-primary" @click="vote">Vote</button>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      new Vue({
+          el : '.container',
+          data : {
+              votes : 0
+          },
+          methods : {
+              vote : function() {
+                  this.$emit('voted')
+              },
+          },
+          created() {
+              this.$on('voted', function(button) {
+                  this.votes++
+              })
+          }
+      })
+  </script>
+</html>

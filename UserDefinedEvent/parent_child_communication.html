@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container text-center">
+        <p style="font-size : 140px">{{ votes }}</P>
+        <food @voted="countVote" name="Cheeseburger"></food>
+      </div>
+  </body>
+  <!-- template -->
+  <template id="food">
+      <button class="btn btn-warning" @click="vote">{{ name }}</button>
+  </template>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      //component
+      Vue.component('food', {
+          template : '#food',
+          props : ['name'],
+          methods : {
+              vote : function() {
+                  this.$emit('voted')
+              }
+          },
+      })
+      new Vue({
+          el : '.container',
+          data : {
+              votes : 0
+          },
+          methods : {
+              countVote : function() {
+                  this.votes++;
+              }
+          },
+      })
+  </script>
+</html>
