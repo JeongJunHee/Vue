@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container text-center">
+          <h1>Food Battle</h1>
+          <p style="font-size : 140px">{{ votes.count }}</p>
+          <button class="btn btn-danger" @click="reset">Reset votes</button>
+          <button class="btn btn-primary" @click="stop">Stop votes</button>
+          <hr>
+
+          <div class="row">
+              <food name="Cheeseburger"></food>
+              <food name="Double Bacon Burger"></food>
+              <food name="Whooper"></food>
+          </div>
+          <hr>
+
+          <h1>Log:</h1>
+          <ul class="list-group">
+              <li class="list-group-item" v-for="vote in votes.log">{{ vote }}</li>
+          </ul>
+      </div>
+  </body>
+  <!-- template -->
+  <template id="food">
+    <div class="text-center col-lg-4">
+        <p style="font-size : 40px">{{ votes }}</p>
+        <button class="btn btn-warning" @click="vote">{{ name }}</button>
+    </div>
+  </template>
+  <script src="https://unpkg.com/vue"></script>
+  <script>
+      var bus = new Vue()
+
+      Vue.component('food', {
+          template : '#food',
+          props : ['name'],
+          data : function() {
+              return {
+                  votes : 0
+              }
+          },
+          methods : {
+              vote : function(event) {
+                  var food = event.srcElement.textContent;
+                  this.votes++
+                  bus.$emit('voted', food)
+              },
+              reset : function() {
+                  this.votes = 0
+              }
+          },
+          created() {
+              bus.$on('reset', this.reset)
+          }
+      })
+
+      new Vue({
+        el : '.container',
+        data : {
+            votes : {
+                count : 0,
+                log : []
+            }
+        },
+        methods : {
+            countVote : function(food) {
+                this.votes.count++;
+                this.votes.log.push(food + ' received a vote.');
+            },
+            reset : function() {
+                this.votes = {
+                    count : 0,
+                    log : []
+                }
+                bus.$emit('reset')
+            },
+            stop : function() {
+                bus.$off(['voted']) 
+            },
+        },
+        created() {
+            bus.$on('voted', this.countVote)
+        }
+      })
+  </script>
+</html>
