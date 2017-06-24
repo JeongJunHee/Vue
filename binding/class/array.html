@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div class="container text-center">
+          <div class="box" v-bind:class="[ color ? 'red' : 'blue' ]"></div>
+          <div class="box" v-bind:class="[ color ? 'purple' : 'green' ]"></div>
+          <div class="box" v-bind:class="[ color ? 'red' : 'blue' ]"></div>
+          <div class="box" v-bind:class="[ color ? 'purple' : 'green' ]"></div>
+          <button class="btn btn-block btn-success" v-on:click="flipColor">
+              Flip color!
+          </button>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>  
+  <script>
+      new Vue ({
+          el : '.container',
+          data : {
+              color : true
+          },
+          methods : {
+              flipColor : function() {
+                  this.color = !this.color;
+              }
+          }
+      })
+  </script>
+  <style type="text/css">
+    .red {
+        background: #ff0000;
+    }
+    .blue {
+        background: #0000ff;
+    }
+    .purple {
+        background: #7b1fa2;
+    }
+    .green {
+        background: #4caf50;
+    }
+    .box {
+        float : left;
+        width: 200px;
+        height: 200px;
+        margin : 40px;
+        border : 1px solid rgba(0, 0, 0, .2);
+    }
+  </style>
+</html>
