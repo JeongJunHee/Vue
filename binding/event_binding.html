@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body class="container-fluid">
+      <div id="app">
+          <ul>
+              <li :class="{ 'completed' : task.done }"
+                  :style="styleObject"
+                  v-for="task in tasks">
+                  {{ task.body }}
+                  <button @click="completeTask(task)" class="btn btn-success">
+                      Just do it!
+                  </button>
+              </li>
+          </ul>
+      </div>
+  </body>
+  <script src="https://unpkg.com/vue"></script>  
+  <script>
+      new Vue ({
+          el : '#app',
+          data : {
+              tasks : [
+                  { body : "Feed the horses", done : true },
+                  { body : "Wash armor", done : true },
+                  { body : "Sharp sword", done : false },
+              ],
+              styleObject : {
+                  fontSize : '25px'
+              }
+          },
+          methods : {
+              completeTask : function(task) {
+                  task.done = !task.done;
+              }
+          }
+      })
+  </script>
+  <style type="text/css">
+    .completed {
+        text-decoration : line-through;
+    }
+  </style>
+</html>
