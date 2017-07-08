@@ -1,0 +1,68 @@
+[
+  {
+    "id": 2,
+    "plot": "Anakin, you're breaking my heart! And you're going down a path I cannot follow!",
+    "upvotes": "586",
+    "writer": "Padme"
+  },
+  {
+    "id": 3,
+    "plot": "Hello, I don't believe we have been introduced. R2-D2? A pleasure to meet you. I am C-3PO, Human-Cyborg Relations.",
+    "upvotes": "384",
+    "writer": "C-3PO"
+  },
+  {
+    "id": 4,
+    "plot": "Help me Obi-Wan Kenobi, you're my only hope.",
+    "upvotes": "896",
+    "writer": "Princess Leia"
+  },
+  {
+    "id": 5,
+    "plot": "I've been waiting for tyou, Obi-Wan. We meet again, at last. The circle is now complete. When I left you, I was but the learner; now I am the master.",
+    "upvotes": "680",
+    "writer": "Darth Vader"
+  },
+  {
+    "id": 6,
+    "plot": "The Dark Side of the Force is the pathway to many abilities some consider to be... Unnatural.",
+    "upvotes": "787",
+    "writer": "Senator Palpatine"
+  },
+  {
+    "id": 7,
+    "plot": "Aren't you a little short for a storm trooper?",
+    "upvotes": "387",
+    "writer": "Princess Leia"
+  },
+  {
+    "id": 9,
+    "plot": "The force is strong with this one.",
+    "upvotes": "836",
+    "writer": "Darth Vader"
+  },
+  {
+    "id": 10,
+    "plot": "There is good in him. I've felt it.",
+    "upvotes": "318",
+    "writer": "Luke Skywalker"
+  },
+  {
+    "id": 11,
+    "plot": "Good Anakin, Good. Kill him. Kill him now",
+    "upvotes": "397",
+    "writer": "Chancellor Palpatine"
+  },
+  {
+    "id": 14,
+    "plot": "I've been waiting for tyou, Obi-Wan. We meet again, at last. The circle is now complete. When I left you, I was but the learner; now I am the master.",
+    "upvotes": "867",
+    "writer": "Darth Vader"
+  },
+  {
+    "id": 16,
+    "plot": "Now, young Skywalker... you will die.",
+    "upvotes": "899",
+    "writer": "The Emperor"
+  }
+]
