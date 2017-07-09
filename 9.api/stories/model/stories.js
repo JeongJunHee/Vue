@@ -26,6 +26,32 @@ class Story {
             reject({msg:'Can not find story', code:404});
         });
     }
+
+    upvoteStory(story_id) {
+        return new Promise((resolve, reject) => {
+            for (var story of this.data ) {
+                if ( story.id == story_id ) {
+                    story.upvotes++;
+                    resolve(story);
+                    return;
+                }
+            }
+            reject({msg:'Can not find story', code:404});
+        });
+    }
+
+    deleteStory(story_id) {
+        return new Promise((resolve, reject) => {
+            for (var story of this.data ) {
+                if ( story.id == story_id ) {
+                    this.data.splice(story, 1);
+                    resolve(story);
+                    return;
+                }
+            }
+            reject({msg:'Can not find story', code:404});
+        });
+    }
 }
 
 module.exports = new Story();

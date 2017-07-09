@@ -1,0 +1,72 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>Vue</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+      <div id="app">
+          <div class="container">
+            <h1>Stories</h1>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Plot</th>
+                    <th>Writer</th>
+                    <th>Upvotes</th>
+                    <th>Actions</th>
+                </tr>
+                <!-- <story v-for="story in stories" :story="story"></story> -->
+                <tr v-for="story in stories" is="story" :story="story"></tr>
+            </table>
+            <p class="lead">Hear's a list of all your stories.</p>
+          </div>
+      </div>
+  </body>
+  <template id="template-story-raw">
+      <tr>
+          <td>{{ story.id }}</td>
+          <td><span>{{ story.plot }}</span></td>
+          <td><span>{{ story.writer }}</span></td>
+          <td>{{ story.upvotes }}</td>
+          <td>
+              <div class="btn-group">
+                  <button class="btn btn-primary" @click="upvoteStory(story)">
+                      Upvote
+                  </button>
+              </div>
+          </td>
+      </tr>
+  </template>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.0.1/vue.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+  <script type="text/javascript">
+   Vue.component("story", {
+        template : "#template-story-raw",
+        props : ["story"],
+        methods : {
+            upvoteStory : function(story) {
+                story.upvotes++;
+                $.ajax({
+                    url : 'http://localhost:3000/api/stories/' + story.id,
+                    type : 'PUT',
+                    data : story,
+                });
+            }
+        }
+    });
+
+    var vm = new Vue({
+        el : "#app",
+        data : {
+            stories : []
+        },
+        mounted : function() {
+            $.get('http://localhost:3000/api/stories', function(data) {
+                vm.stories = data;
+            })
+        }
+    })
+  </script>
+</html>
