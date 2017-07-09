@@ -27,11 +27,13 @@ class Story {
         });
     }
 
-    upvoteStory(story_id) {
+    updateStory(story_id, data) {
         return new Promise((resolve, reject) => {
             for (var story of this.data ) {
                 if ( story.id == story_id ) {
-                    story.upvotes++;
+                    story.plot = data.plot;
+                    story.upvotes = data.upvotes;
+                    story.writer = data.writer;
                     resolve(story);
                     return;
                 }
