@@ -30,7 +30,6 @@ async function updateStory(req, res) {
         const story_id = req.params.id;
         const data = req.body;
         const result = await story.updateStory(story_id, data);
-        console.log(result);
         res.send(result);
     }
     catch ( error ) {
