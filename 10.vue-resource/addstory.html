@@ -52,9 +52,9 @@
               </div>
               <div v-else class="btn-group">
                   <button v-if="story.id" class="btn btn-primary" @click="updateStory(story)">
-                      Upvote Story
+                      Update Story
                   </button>
-                  <button class="btn btn-success" @click="storeStory(story)">
+                  <button v-else class="btn btn-success" @click="storeStory(story)">
                       Save New Story
                   </button>
                   <button class="btn btn-default" @click="cancleStory(story)">
@@ -97,29 +97,19 @@
             storeStory : function(story) {
                 this.$http.post('http://localhost:3000/api/stories', story).then(function() {
                     story.editing = false;
+                    vm.fetchStories();
                 });
             }
         }
     });
 
-    new Vue({
+    var vm = new Vue({
         el : "#app",
         data : {
             stories : [],
         },
         mounted : function() {
-            var vm = this;
-
-            this.$http({ url : 'http://localhost:3000/api/stories', methods : 'GET' })
-            .then(function(res) {
-                var stotiesReady = res.data.map(function(story) {
-                    story.editing = false;
-                    story.resetPlot = '';
-                    story.resetWriter = '';
-                    return story;
-                })
-                Vue.set(vm, 'stories', stotiesReady)
-            })
+            this.fetchStories()
         },
         methods : {
             createStory : function() {
@@ -132,6 +122,18 @@
                     "editing" : true
                 };
                 this.stories.push(newStory);
+            },
+            fetchStories : function() {
+                this.$http.get('http://localhost:3000/api/stories')
+                .then(function(res) {
+                    var storiesReady = res.data.map(function(story) {
+                        story.editing = false;
+                        story.resetPlot = '';
+                        story.resetWriter = '';
+                        return story;
+                    })
+                    Vue.set(vm, 'stories', storiesReady)
+                })
             }
         }
     })
