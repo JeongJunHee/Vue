@@ -4,6 +4,7 @@ const router = express.Router();
 
 router.get('/api/stories', showStoryList);
 router.get('/api/stories/:id', showStoryDetail);
+router.post('/api/stories', addStory);
 router.put('/api/stories/:id', updateStory);
 router.delete('/api/stories/:id', deleteStory);
 
@@ -25,12 +26,22 @@ async function showStoryDetail(req, res) {
     }
 }
 
+async function addStory(req, res) {
+    try {
+        const data = req.body;
+        const result = await story.addStory(data);
+        res.send(result);
+    }
+    catch ( error ) {
+        res.status(error.code).send({msg:error.msg});
+    }
+}
+
 async function updateStory(req, res) {
     try {
         const story_id = req.params.id;
         const data = req.body;
         const result = await story.updateStory(story_id, data);
-        console.log(result);
         res.send(result);
     }
     catch ( error ) {

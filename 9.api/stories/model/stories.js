@@ -27,6 +27,21 @@ class Story {
         });
     }
 
+    addStory(story) {
+        return new Promise((resolve, reject) => {
+            let last = this.data[this.data.length - 1];
+            let id = last.id + 1;
+            let newStory = {
+                "id" : id,
+                "plot" : story.plot,
+                "upvotes" : story.upvotes,
+                "writer" : story.writer
+            };
+            this.data.push(newStory)
+            resolve(newStory);
+        });
+    }
+
     updateStory(story_id, data) {
         return new Promise((resolve, reject) => {
             for (var story of this.data ) {
