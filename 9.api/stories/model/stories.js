@@ -59,12 +59,14 @@ class Story {
 
     deleteStory(story_id) {
         return new Promise((resolve, reject) => {
+            var index = 0;
             for (var story of this.data ) {
                 if ( story.id == story_id ) {
-                    this.data.splice(story, 1);
+                    this.data.splice(index, 1);
                     resolve(story);
                     return;
                 }
+                index++;
             }
             reject({msg:'Can not find story', code:404});
         });
