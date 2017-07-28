@@ -36,7 +36,7 @@
         methods : {
             upvote : function() {
                 this.story.upvotes += 1;
-                this.story.voted = true;
+                this.props.story.voted = true;
             },
             setFavorite : function() {
                 this.favorite = this.story;

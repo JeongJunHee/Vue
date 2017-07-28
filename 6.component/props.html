@@ -8,6 +8,8 @@
   </head>
   <body>
       <div class="container">
+        <!-- 컴포넌트는 둘 이상의 속성을 가질 수 있다 (plot, writer) -->
+        <!-- 속성이 많아져 엘리먼트가 더러워지면 객체를 속성으로 전달할 수 있다-->
         <story v-bind:story="{ plot : 'My horse is amazing.', writer : 'Mr.Weebl' }"></story>
         <story v-bind:story="{ plot : 'Narwhals invented Shish Kebab.', writer : 'Mr.Weebl' }"></story>
         <story v-bind:story="{ plot : 'The dark side of the Force is stronger.', writer : 'Darth Vader' }"></story>
@@ -19,7 +21,7 @@
   <script src="https://unpkg.com/vue"></script>  
   <script>
       Vue.component('story', {
-          props : ['story'],
+          props : ['story'], //story = { plot : '', writer : '' }
           template : '#story-template'
       });
       new Vue ({
