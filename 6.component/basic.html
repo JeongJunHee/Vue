@@ -8,12 +8,18 @@
   </head>
   <body>
       <div class="container">
+          <!-- 사용자 정의 컴포넌트 -->
+          <story></story>
+          <story></story>
           <story></story>
       </div>
   </body>
   <script src="https://unpkg.com/vue"></script>  
   <script>
+      //Vue.component 메소드를 사용하여, 태그 및 생성자를 전달
+      //태그(컴포넌트의 이름), 생성자(옵션)
       Vue.component('story', {
+          //template 옵션
           template : '<h1>My horse is amazing</h1>'
       });
       new Vue ({
@@ -21,3 +27,9 @@
       })
   </script>
 </html>
+
+<!--
+    1. 사용자 정의 컴포넌트에 원하는 이름을 지정할 수 있다
+    2. 고유한 이름을 사용하여 실제 HTML 태그와 충돌하지 않도록 예방하는 것이 좋음
+    3. 컴포넌트는 재사용할 수 있다
+-->
