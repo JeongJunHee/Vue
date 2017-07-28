@@ -7,9 +7,11 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+      <!-- parent component -->
       <div class="container text-center">
         <p style="font-size : 140px">{{ votes }}</P>
         <div class="row">
+            <!-- child component -->
             <food @voted="countVote" name="Cheeseburger"></food>
             <food @voted="countVote" name="Double Bacon Burger"></food>
             <food @voted="countVote" name="Rodeo Burger"></food>

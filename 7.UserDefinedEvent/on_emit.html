@@ -21,10 +21,12 @@
           },
           methods : {
               vote : function() {
+                  // $emit(event)를 이용 하여 이벤트 발생
                   this.$emit('voted')
               },
           },
           created() {
+              // $on(event)를 이용하여 이벤트 청취
               this.$on('voted', function(button) {
                   this.votes++
               })

@@ -7,12 +7,15 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
+      <!-- 부모 컴포넌트의 템플릿 -->
       <div class="container text-center">
         <p style="font-size : 140px">{{ votes }}</P>
+        <!-- @voted="countVote"는 food 컴포넌트에서 voted 이벤트가 발생할 때 countVote 메소드가 실행됨을 의미-->
         <food @voted="countVote" name="Cheeseburger"></food>
       </div>
   </body>
   <!-- template -->
+  <!-- food 컴포넌트의 템플릿 -->
   <template id="food">
       <button class="btn btn-warning" @click="vote">{{ name }}</button>
   </template>
