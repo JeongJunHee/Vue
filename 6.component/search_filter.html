@@ -7,12 +7,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-      <div class="container">
+      <div class="container"> <!-- new Vue() instance 부모 -->
           <h1>Lets hear some stories!</h1>
           <div>
             <div>
                 <h3>Alex's stories</h3>
                 <ul class="list-group">
+                    <!-- new Vue() 컴포넌트 아래의 story 컴포넌트 자식 -->
                     <story v-for="story in storiesBy('Alex')" :story="story"></story>
                 </ul>
                 </h3>John's stories</h3>
@@ -42,7 +43,7 @@
   <script src="https://unpkg.com/vue"></script>
   <script>
         Vue.component('story', {
-            props : ['story'],
+            props : ["story"],
             template : '#story-template'
         });
 

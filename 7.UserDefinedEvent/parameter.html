@@ -41,7 +41,8 @@
               }
           },
           methods : {
-              vote :function() {
+              vote :function(event) {
+                  console.log(event)
                   this.votes++;
                   this.$emit('voted', event.srcElement.textContent);
               }
