@@ -3,7 +3,7 @@
 		<h2>Sign in</h2>
 		<input class="form-control" type="email" placeholder="Email address">
 		<input class="form-control" type="password" placeholder="Password">
-		<button class="btn">Sign in</button>
+		<button class="btn btn-primary">Sign in</button>
 	</div>
 </template>
 
