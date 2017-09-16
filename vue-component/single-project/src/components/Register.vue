@@ -7,7 +7,7 @@
       <input placeholder="Pick a password" class="form-control">
       <input placeholder="Confirm password" class="form-control">
       <button class="btn btn-primary">Sign up</button>
-      <famous></famous>
+      <famous :stories="stories"></famous>
     </div>
 </template>
 
@@ -18,6 +18,7 @@ export default {
   components: {
     Famous
   },
+  props: ['stories'],
   created () {
     console.log('register')
   }

@@ -2,24 +2,26 @@
   <div id="app">
     <img src="./assets/logo.png">
     <!-- <login></login> -->
-    <Register></Register>
     <!-- <stories></stories> -->
     <!-- <famous></famous> -->
+    <Register :stories="stories"></Register>
+    <stories :stories="stories"></stories>
+    <p>Welcome to your Vue.js app!</p>
   </div>
 </template>
 
 <script>
 // import Login from './components/Login.vue'
 import Register from './components/Register'
-// import Stories from './components/Stories'
+import Stories from './components/Stories'
 // import Famous from './components/Famous'
 
 export default {
   name: 'app',
   components: {
     // Login,
-    Register
-    // Stories,
+    Register,
+    Stories
     // Famous
   }
 }
