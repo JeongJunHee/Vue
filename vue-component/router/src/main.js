@@ -6,6 +6,18 @@ import router from './router'
 
 Vue.config.productionTip = false
 
+let User = {
+  isAdmin: false
+}
+
+router.beforeEach((to, from, next) => {
+  if(to.path !== '/login' && !User.isAdmin) {
+    next('/login')
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
